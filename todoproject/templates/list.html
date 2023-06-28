@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block title %}Todo App{% endblock %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-6" style="margin: 0 auto;">
+    <form action="{% url 'searchdata' %}">
+      <label for="query">Search By Title</label>
+      <input type="search" class="form-control" name="query" id="query">
+      <button type="submit" class="btn btn-primary" style="display: block;margin: 1rem auto;">Search</button>
+    </form>
+  </div>
+</div>
+{% for eachtodo in alltodos %}
+<div class="row">
+    <div class="col-md-6 mx-auto" >
+        <div class="card container-fluid" style="margin-top: 1rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{eachtodo.title}} </h5>
+              <p class="card-text">{{eachtodo.description}}</p>
+              <!-- <p class="card-text">{{eachtodo.created_at}}</p> -->
+              
+              <a href="/delete/{{eachtodo.id}}" class="btn btn-info">Delete</a>
+              <a href="/edit/{{eachtodo.id}}" class="btn btn-success">Edit</a>
+
+
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
